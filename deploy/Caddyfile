@@ -1,0 +1,6 @@
+# Caddy gets and renews the HTTPS certificate automatically.
+# Replace www.example.md with the real domain (its DNS A record must point to this server).
+www.example.md, example.md {
+	encode gzip
+	reverse_proxy 127.0.0.1:3000
+}

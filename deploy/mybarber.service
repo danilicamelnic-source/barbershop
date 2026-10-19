@@ -1,0 +1,24 @@
+# systemd unit: copy to /etc/systemd/system/mybarber.service, then
+#   sudo systemctl daemon-reload && sudo systemctl enable --now mybarber
+[Unit]
+Description=My Barber website + booking server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=mybarber
+Group=mybarber
+WorkingDirectory=/opt/mybarber/current
+ExecStart=/usr/bin/node --env-file=/opt/mybarber/.env --disable-warning=ExperimentalWarning server/server.js
+Environment=DB_PATH=/opt/mybarber/data/bookings.db
+Restart=always
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/mybarber/data /opt/mybarber/backups
+
+[Install]
+WantedBy=multi-user.target

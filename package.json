@@ -1,0 +1,21 @@
+{
+  "name": "mybarber-booking",
+  "version": "1.2.0",
+  "private": true,
+  "description": "My Barber website with on-site booking (Node.js + SQLite, no dependencies)",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env --disable-warning=ExperimentalWarning server/server.js",
+    "test": "node --disable-warning=ExperimentalWarning --test tests/api.test.js",
+    "hash-password": "node tools/hash-password.js",
+    "backup": "node --disable-warning=ExperimentalWarning tools/backup.js",
+    "csp": "node tools/update-csp.js",
+    "test:browser": "node --disable-warning=ExperimentalWarning --test tests/browser.test.js",
+    "test:all": "npm test && npm run test:browser"
+  },
+  "devDependencies": {
+    "playwright": "1.56.0"
+  }
+}
